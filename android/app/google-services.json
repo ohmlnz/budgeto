@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "838372125710",
+    "firebase_url": "https://budgeto-f7120.firebaseio.com",
+    "project_id": "budgeto-f7120",
+    "storage_bucket": "budgeto-f7120.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838372125710:android:f4ada17c7c2d4ff5",
+        "android_client_info": {
+          "package_name": "com.budgeto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "838372125710-e3pu9319jcsao69b56c5p5lpd2tbg1s3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8Sf8fn-FCbDVA-SvjK_OIc4pRd5xx18M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

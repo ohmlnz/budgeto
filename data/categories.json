@@ -1,0 +1,19 @@
+[
+	{ "label": "Select category", "value": "" },
+	{ "label": "Rent/Mortgage", "value": "Rent" },
+	{ "label": "Groceries", "value": "Groceries" },
+	{ "label": "Fast Food/Take out", "value": "Take_out" },
+	{ "label": "Internet", "value": "Internet" },
+	{ "label": "Electricity & Gas", "value": "Electricity" },
+	{ "label": "Cell Phone", "value": "Cell" },
+	{ "label": "Car", "value": "Car" },
+	{ "label": "Gas", "value": "Gas" },
+	{ "label": "Entertainment", "value": "Entertainment" },
+	{ "label": "Clothing", "value": "Clothing" },
+	{ "label": "Transportation", "value": "Transportation" },
+	{ "label": "Home Improvement", "value": "Home_Improvement" },
+	{ "label": "Gym", "value": "Gym" },
+	{ "label": "Parking", "value": "Parking" },
+	{ "label": "Miscellaneous", "value": "Misc" }	
+]
+
