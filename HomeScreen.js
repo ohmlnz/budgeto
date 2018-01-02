@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Alert, Text, View, TextInput, Picker, TouchableOpacity } from 'react-native';
 import categories from './data/categories.json';
 import firebase from 'react-native-firebase';
-import { addExpense, updateExpense, addDetail } from './helpers/firebase.js';
+import { addExpense, updateExpense, addDetail, setLimits } from './helpers/firebase.js';
 import { stylesHome } from './css/homescreen.js';
 
 export default class App extends Component {

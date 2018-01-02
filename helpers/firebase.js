@@ -27,3 +27,9 @@ export const addDetail = (newId, detail_lastId, value, fulldate, descr) => {
 	});
 }
 
+export const setLimits = (key, value) => {
+	firebase.database().ref('limits').set({
+		key: value
+	})
+}
+

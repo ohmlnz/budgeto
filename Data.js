@@ -28,6 +28,10 @@ export default class Data extends Component {
     });
   }
 
+  removeDetail = (i) => {
+    alert(i)
+  }
+
   render() {  
     return (
       <View style={stylesData.container}>
@@ -45,9 +49,10 @@ export default class Data extends Component {
 
               <View style={{ display: `${this.state.hidden? 'none' : 'flex'}`, marginLeft: 5}}> 
                 {item.detail.map((d, i) => 
-                  <Text style={{ marginTop: 5 }} key={i}>{d.date} - {d.description}: {d.value}$</Text>
+                  <Text style={{ marginTop: 5 }} key={i}>{d.date} - {d.description}: {d.value}$ <Text onPress={() => this.removeDetail(i)}>X</Text></Text>
                 )}
               </View>
+              <View style={{ width: 170, borderBottomColor: '#77777750', borderBottomWidth: 1, alignSelf: 'center', marginTop: 10, marginBottom: 10 }}></View>
             </View> 
           }
           keyExtractor={(item, index) => index }
@@ -55,7 +60,7 @@ export default class Data extends Component {
         />
 
         <TouchableOpacity style={stylesData.details} onPress={this.displayDetails}>
-          <Text style={stylesData.details_text}>{this.state.hidden? `${'Display details'.toUpperCase()}` : `${'Hide details'.toUpperCase()}`}</Text>
+          <Text style={stylesData.details_text}>{this.state.hidden? `${'Details'.toUpperCase()}` : `${'Hide'.toUpperCase()}`}</Text>
         </TouchableOpacity>
 
         <Text>{this.state.expenses == null? 'There are currently no expenses :)' : ''}</Text>

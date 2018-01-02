@@ -26,7 +26,7 @@ export default class TabViewExample extends PureComponent {
   _renderHeader = props => (
     <TabBar {...props} 
       style={{ backgroundColor: '#898c8e' }} 
-      indicatorStyle={{ backgroundColor: '#5b5b5b' }} 
+      indicatorStyle={{ backgroundColor: '#47454550' }} 
     /> );
 
   _renderScene = SceneMap({

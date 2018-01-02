@@ -25,10 +25,12 @@ export const stylesData = StyleSheet.create({
     backgroundColor: '#d3d3d3',
     marginTop: 25,
     padding: 10,
+    width: 120,
     borderRadius: 3
   },
   details_text: {
-    fontSize: 15,
-    color: '#585958'
+    fontSize: 13,
+    color: '#585958',
+    textAlign: 'center'
   }
 });
