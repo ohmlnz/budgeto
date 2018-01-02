@@ -21,13 +21,6 @@ export const stylesData = StyleSheet.create({
     color: '#B40404',
     fontSize: 18
   },
-  details: {
-    backgroundColor: '#d3d3d3',
-    marginTop: 25,
-    padding: 10,
-    width: 120,
-    borderRadius: 3
-  },
   details_text: {
     fontSize: 13,
     color: '#585958',

@@ -121,9 +121,6 @@ export default class App extends Component {
             <Text style={stylesHome.buttonText}>{'Submit'.toUpperCase()}</Text>
           </TouchableOpacity>
         </View>
-        {/*<TouchableOpacity style={stylesHome.results} onPress={() => this.props.navigation.navigate('Data')}>
-          <Text>See results &#8594;</Text>
-        </TouchableOpacity>*/}
       </View>
     );
   }

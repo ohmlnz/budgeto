@@ -21,11 +21,13 @@ export default class Data extends Component {
       const expenses = snapshot.val();
       this.setState({ expenses: expenses });
 
-      {expenses.map((e, i) => 
-        this.setState({
-          total: this.state.total + e.value
-        })
-      )};
+      if (expenses !== null) {
+        {expenses.map((e, i) => 
+          this.setState({
+            total: this.state.total + e.value
+          })
+        )};
+      }
     });
   }
 
@@ -53,11 +55,12 @@ export default class Data extends Component {
                   &nbsp;{item.value}$
                 </Text>
               </Text>
-
               <View style={{ display: `${this.state.hidden? 'none' : 'flex'}`, marginLeft: 5}}> 
-                {item.detail.map((d, i) => 
-                  <Text style={{ marginTop: 5 }} key={i}>{d.date} - {d.description}: {d.value}$ <Text onPress={() => this.removeDetail(i)}>X</Text></Text>
-                )}
+                {item.detail !== undefined? 
+                  item.detail.map((d, i) => 
+                    <Text style={{ marginTop: 5 }} key={i}>{d.date} - {d.description}: {d.value}$</Text>
+                  ) : <Text>''</Text>
+                }
               </View>
               <View style={{ width: 170, borderBottomColor: '#77777750', borderBottomWidth: 1, alignSelf: 'center', marginTop: 10, marginBottom: 10 }}></View>
             </View> 
@@ -66,9 +69,9 @@ export default class Data extends Component {
           extraData={this.state}
         />
 
-        <Text style={{ fontWeight: 'bold', marginTop: 5 }}>Total: {this.state.total}</Text>
+        <Text style={{ display: `${this.state.expenses == null? 'none' : 'flex'}`, fontWeight: 'bold', marginTop: 5 }}>Total: {this.state.total}</Text>
 
-        <TouchableOpacity style={stylesData.details} onPress={this.displayDetails}>
+        <TouchableOpacity style={{ display: `${this.state.expenses == null? 'none' : 'flex'}`, backgroundColor: '#d3d3d3', marginTop: 25, padding: 10, width: 120, borderRadius: 3 }} onPress={this.displayDetails}>
           <Text style={stylesData.details_text}>{this.state.hidden? `${'Details'.toUpperCase()}` : `${'Hide'.toUpperCase()}`}</Text>
         </TouchableOpacity>
 
