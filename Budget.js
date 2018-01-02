@@ -6,13 +6,21 @@ import { stylesBudget } from './css/budget.js';
 
 export default class Budget extends Component {
 	state = {
-		limits: {}
+		limits: {},
+		total: 0
 	}
 
   componentDidMount = () => {
 	  firebase.database().ref('limits').orderByValue().on('value', (snapshot) => {
 	    const limits = snapshot.val();
 	    this.setState({ limits: limits });
+
+
+		  {Object.keys(limits).map((key, index) => 
+				this.setState({
+					total: this.state.total + limits[key]
+				})
+			)}
 	  });
   }
 
@@ -25,6 +33,7 @@ export default class Budget extends Component {
 	        {Object.keys(limits).map((key, index) => 
 	   					<Text style={{ fontSize: 15, marginTop: 3 }} key={index}>{`${key}: ${limits[key]}$`}</Text>
 					)}
+					<Text style={{ fontWeight: 'bold', marginTop: 5 }}>Total: {this.state.total}</Text>
 				</View>
       </View>
     );

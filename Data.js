@@ -12,13 +12,20 @@ const month = months[date.getMonth()];
 export default class Data extends Component {
   state = {
     expenses: [],
-    hidden: true
+    hidden: true,
+    total: 0
   }
 
   componentDidMount = () => {
     firebase.database().ref('expenses').orderByValue().on('value', (snapshot) => {
       const expenses = snapshot.val();
       this.setState({ expenses: expenses });
+
+      {expenses.map((e, i) => 
+        this.setState({
+          total: this.state.total + e.value
+        })
+      )};
     });
   }
 
@@ -29,7 +36,7 @@ export default class Data extends Component {
   }
 
   removeDetail = (i) => {
-    alert(i)
+    //alert(i)
   }
 
   render() {  
@@ -58,6 +65,8 @@ export default class Data extends Component {
           keyExtractor={(item, index) => index }
           extraData={this.state}
         />
+
+        <Text style={{ fontWeight: 'bold', marginTop: 5 }}>Total: {this.state.total}</Text>
 
         <TouchableOpacity style={stylesData.details} onPress={this.displayDetails}>
           <Text style={stylesData.details_text}>{this.state.hidden? `${'Details'.toUpperCase()}` : `${'Hide'.toUpperCase()}`}</Text>
