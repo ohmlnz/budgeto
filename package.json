@@ -22,6 +22,10 @@
     "react-moment": "^0.6.8",
     "react-native": "0.50.3",
     "react-native-firebase": "^3.2.0",
+    "react-native-gesture-handler": "^1.0.0-alpha.36",
+    "react-native-shadow": "^1.2.2",
+    "react-native-svg": "^6.0.1-rc.1",
+    "react-native-tab-view": "^0.0.73",
     "react-navigation": "^1.0.0-beta.22"
   }
 }

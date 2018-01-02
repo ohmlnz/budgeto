@@ -18,3 +18,12 @@ export const updateExpense = (newId, label, value, fulldate) => {
 	});
 }
 
+export const addDetail = (newId, detail_lastId, value, fulldate, descr) => {
+	firebase.database().ref(`expenses/${newId}/detail/${detail_lastId}`).set({
+		id: detail_lastId,
+		value: value,
+		date: fulldate,
+		description: descr
+	});
+}
+

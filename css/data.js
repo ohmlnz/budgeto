@@ -9,11 +9,26 @@ export const stylesData = StyleSheet.create({
   },
   title: {
     marginTop: 10,
-    marginBottom: 10,
-    fontWeight: 'bold'
+    marginBottom: 15,
+    fontWeight: 'bold',
+    fontSize: 20
+  },
+  expense: {
+    fontSize: 18
   },
   exceeds: {
     fontWeight: 'bold',
-    color: '#B40404'
+    color: '#B40404',
+    fontSize: 18
+  },
+  details: {
+    backgroundColor: '#d3d3d3',
+    marginTop: 25,
+    padding: 10,
+    borderRadius: 3
+  },
+  details_text: {
+    fontSize: 15,
+    color: '#585958'
   }
 });

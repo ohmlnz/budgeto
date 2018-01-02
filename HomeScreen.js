@@ -2,62 +2,75 @@ import React, { Component } from 'react';
 import { Alert, Text, View, TextInput, Picker, TouchableOpacity } from 'react-native';
 import categories from './data/categories.json';
 import firebase from 'react-native-firebase';
-import { addExpense, updateExpense } from './helpers/firebase.js';
+import { addExpense, updateExpense, addDetail } from './helpers/firebase.js';
 import { stylesHome } from './css/homescreen.js';
 
 export default class App extends Component {
 
   state = {
     selection: '',
-    input: ''
+    input: '',
+    description: '',
   }
 
   submitForm = () => {
 
-    if ((this.state.selection.length == 0) || (this.state.input.length == 0)) {
-      Alert.alert('Empty request.', 'You have to select something!');
+    if ((this.state.selection.length == 0) || (this.state.input.length == 0) || (this.state.description.length == 0)) {
+      Alert.alert('Empty request', 'You have to select something!');
       return;
     }
     
-    let ope;
-    let total;
-    let newId;
-    let lastId;
+    let oldValue, ope, newId, lastId, detail_lastId, newValue;
     let date = new Date();
-    let month = date.getMonth()+1;
-    let day = date.getDate();
-    let fulldate = `${month}/${day}`;
+    let fulldate = `${date.getMonth()+1}/${date.getDate()}`;
     let id = Date.now()+1;
     let label = this.state.selection;
     let value = parseInt(this.state.input);
+    let descr = this.state.description;
 
     firebase.database().ref('expenses').once('value', (snapshot) => {  
-      total = snapshot.numChildren(); 
-      const a = [];
+      const exp = [];
       snapshot.forEach(function(childSnapshot) {
         const obj = childSnapshot.val();
-        a.push(childSnapshot.val());
+        exp.push(childSnapshot.val());
         if (obj.label === label) {
-          value = value + obj.value;
+          oldValue = obj.value;
+          newValue = value + obj.value;
           ope = 'update';
           newId = obj.id;
         }
       });
     
-      lastId = a.length > 0? a[a.length-1].id+1 : 0; 
+      lastId = exp.length > 0? exp[exp.length-1].id+1 : 0; 
       
       if (ope === 'update') {
-        updateExpense(newId, label, value, fulldate); 
-        ope = '';
+        firebase.database().ref(`expenses/${newId}/detail`).once('value', (snapshot) => {  
+          const exp_detail = [];
+          snapshot.forEach(function(childSnapshot) {
+            exp_detail.push(childSnapshot.val());
+          });
+
+          detail_lastId = exp_detail.length > 0? exp_detail[exp_detail.length-1].id+1 : 0;
+
+          addDetail(newId, detail_lastId, value, fulldate, descr);
+          updateExpense(newId, label, newValue, fulldate);
+          ope = '';
+          oldValue = '';
+
+        });
+
       } else {
-        addExpense(lastId, label, value, fulldate); 
+        addExpense(lastId, label, value, fulldate);
+        addDetail(lastId, 0, value, fulldate, descr);
       }
+
     });
       
     this.setState({
       selection: '',
-      input: ''
-    })
+      input: '',
+      description: '',
+    });
   }
   
 
@@ -79,6 +92,12 @@ export default class App extends Component {
             keyboardType="numeric"
             onChangeText={(text) => this.setState({input: text})}
           />
+          <TextInput
+            value={this.state.description}
+            style={stylesHome.input}
+            placeholder="Enter description here"
+            onChangeText={(text) => this.setState({description: text})}
+          />
           <Picker style={stylesHome.select}
             selectedValue={this.state.selection}
             onValueChange={this.changeSelect}
@@ -99,12 +118,12 @@ export default class App extends Component {
               { cancelable: false }
             )}
             style={stylesHome.button}>
-            <Text style={stylesHome.buttonText}>Submit</Text>
+            <Text style={stylesHome.buttonText}>{'Submit'.toUpperCase()}</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={stylesHome.results} onPress={() => this.props.navigation.navigate('Data')}>
+        {/*<TouchableOpacity style={stylesHome.results} onPress={() => this.props.navigation.navigate('Data')}>
           <Text>See results &#8594;</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>*/}
       </View>
     );
   }
