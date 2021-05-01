@@ -20,7 +20,7 @@
     "moment": "^2.20.1",
     "react": "16.0.0",
     "react-moment": "^0.6.8",
-    "react-native": "0.50.3",
+    "react-native": "0.51.1",
     "react-native-firebase": "^3.2.0",
     "react-native-gesture-handler": "^1.0.0-alpha.36",
     "react-native-shadow": "^1.2.2",
