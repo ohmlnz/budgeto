@@ -17,7 +17,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "moment": "^2.20.1",
+    "moment": "^2.29.1",
     "react": "16.0.0",
     "react-moment": "^0.6.8",
     "react-native": "0.51.1",
